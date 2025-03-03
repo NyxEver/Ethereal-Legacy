@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class Explore {
     private Character player;
-    private Random random;
+    //private Random random;
+    private Random random = new Random();
 
     public Explore(Character player) {
         this.player = player;
-        this.random = new Random();
     }
 
     public void explore() {
@@ -24,12 +24,14 @@ public class Explore {
                 System.out.println("遭遇魔物！");
                 player.setHealth(player.getHealth() - 10);
                 System.out.println(random.nextBoolean() ? "获得素材！" : "获得装备！");
+                player.gainExp(20); // 获得20经验值
                 break;
             case "森林":
                 if (random.nextBoolean()) {
                     System.out.println("遭遇魔物！");
                     player.setHealth(player.getHealth() - 5);
                     System.out.println("获得素材！");
+                    player.gainExp(10); // 获得10经验值
                 } else {
                     System.out.println("遇到友善NPC，学习新技能！");
                 }

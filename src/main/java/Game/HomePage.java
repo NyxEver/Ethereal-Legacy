@@ -2,6 +2,8 @@ package Game;
 
 import Game.Character;
 import Game.SaveLoad;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class HomePage {
@@ -25,13 +27,32 @@ public class HomePage {
     }
 
     private void startNewGame() {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("输入角色名称：");
         String name = scanner.nextLine();
-        System.out.print("选择灵根（金/木/水/火/土/真灵根/天灵根）：");
-        String lingGen = scanner.nextLine();
+        System.out.print("选择基础灵根（金/木/水/火/土）：");
+        String baseLingGen = validateBaseLingGen(scanner);
+        String lingGen = assignSpecialLingGen(baseLingGen);
         Character player = new Character(name, lingGen);
-        System.out.println("角色创建成功！进入游戏...");
+        System.out.println("角色创建成功！灵根：" + lingGen);
         new GameLoop(player).run();
+    }
+    private String validateBaseLingGen(Scanner scanner) {
+        String input;
+        do {
+            input = scanner.nextLine().toLowerCase();
+            if (!input.matches("金|木|水|火|土")) {
+                System.out.print("无效灵根，请重新选择（金/木/水/火/土）：");
+            }
+        } while (!input.matches("金|木|水|火|土"));
+        return input;
+    }
+    private String assignSpecialLingGen(String base) {
+        Random rand = new Random();
+        int chance = rand.nextInt(100);
+        if (chance < 5) return "天灵根"; // 5% 概率
+        else if (chance < 20) return "真灵根"; // 15% 概率
+        return base; // 80% 概率保持基础灵根
     }
 
     private void loadGame() {
