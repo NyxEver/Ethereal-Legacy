@@ -31,12 +31,12 @@ public class HomePage {
         System.out.print("输入角色名称：");
         String name = scanner.nextLine();
         System.out.print("选择基础灵根（金/木/水/火/土）：");
-        String baseLingGen = validateBaseLingGen(scanner);
-        String lingGen = assignSpecialLingGen(baseLingGen);
-        Character player = new Character(name, lingGen);
-        System.out.println("角色创建成功！灵根：" + lingGen);
+        String lingGen = validateBaseLingGen(scanner);
+        Legacy legacy = selectLegacy(scanner);
+        Character player = new Character(name, lingGen, legacy);
         new GameLoop(player).run();
     }
+
     private String validateBaseLingGen(Scanner scanner) {
         String input;
         do {
@@ -47,13 +47,6 @@ public class HomePage {
         } while (!input.matches("金|木|水|火|土"));
         return input;
     }
-    private String assignSpecialLingGen(String base) {
-        Random rand = new Random();
-        int chance = rand.nextInt(100);
-        if (chance < 5) return "天灵根"; // 5% 概率
-        else if (chance < 20) return "真灵根"; // 15% 概率
-        return base; // 80% 概率保持基础灵根
-    }
 
     private void loadGame() {
         Character player = SaveLoad.loadGame();
@@ -62,6 +55,27 @@ public class HomePage {
             new GameLoop(player).run();
         } else {
             System.out.println("无存档或加载失败。");
+        }
+    }
+
+    private static Legacy selectLegacy(Scanner scanner) {
+        while (true) {
+            System.out.println("\n选择传承：");
+            System.out.println("1. 剑修传承 - 擅长剑法，攻击力强");
+            System.out.println("2. 丹修传承 - 擅长炼丹，恢复能力强");
+            System.out.println("3. 阵修传承 - 擅长阵法，防御力强");
+            System.out.println("4. 体修传承 - 擅长炼体，生命力强");
+            
+            System.out.print("请选择（1-4）：");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1": return Legacy.SWORD_CULTIVATOR;
+                case "2": return Legacy.PILL_MASTER;
+                case "3": return Legacy.FORMATION_MASTER;
+                case "4": return Legacy.BODY_CULTIVATOR;
+                default:
+                    System.out.println("无效选择，请重试。");
+            }
         }
     }
 }
