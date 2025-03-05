@@ -1,4 +1,12 @@
-package Game;
+package com.example.EtherealLegacy.Scene.Business;
+
+import com.example.EtherealLegacy.CharacterPlayer.BasicRule.CultivationRealm;
+import com.example.EtherealLegacy.CharacterPlayer.Bot.Monster;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+import com.example.EtherealLegacy.CharacterPlayer.Race;
+import com.example.EtherealLegacy.Gaming.Battle;
+import com.example.EtherealLegacy.Object.*;
+import com.example.EtherealLegacy.Scene.Scene;
 
 import java.util.Random;
 import java.util.List;

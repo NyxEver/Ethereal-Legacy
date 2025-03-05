@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer;
 
 public enum Legacy {
     SWORD_CULTIVATOR("剑修", "擅长剑法，攻击力强", 1.5, 1.0, 0.8, 1.0),

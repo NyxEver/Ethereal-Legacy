@@ -1,9 +1,8 @@
-package Game;
+package com.example.EtherealLegacy.Gaming;
 
-import Game.Character;
-import Game.SaveLoad;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+import com.example.EtherealLegacy.CharacterPlayer.Legacy;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class HomePage {

@@ -1,4 +1,7 @@
-package Game;
+package com.example.EtherealLegacy.Scene;
+
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+import com.example.EtherealLegacy.CharacterPlayer.BasicRule.CultivationRealm;
 
 public abstract class Scene {
     protected String name;

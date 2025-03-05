@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.Object;
 
 public enum ItemGrade {
     MORTAL_IRON("凡铁", 1.0),

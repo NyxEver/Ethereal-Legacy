@@ -1,4 +1,8 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer;
+
+import com.example.EtherealLegacy.Object.Item;
+import com.example.EtherealLegacy.Object.ItemGrade;
+import com.example.EtherealLegacy.Object.Skill;
 
 import java.util.ArrayList;
 import java.util.List;

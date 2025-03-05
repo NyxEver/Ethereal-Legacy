@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer.Bot;
+
+import com.example.EtherealLegacy.CharacterPlayer.Race;
 
 public class Monster {
     private String name;

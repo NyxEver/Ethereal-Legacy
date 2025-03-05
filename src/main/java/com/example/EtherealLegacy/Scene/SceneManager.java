@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Scene;
+
+import com.example.EtherealLegacy.Scene.Scene;
 
 import java.util.*;
 

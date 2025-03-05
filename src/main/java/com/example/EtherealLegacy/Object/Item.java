@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Object;
+
+import com.example.EtherealLegacy.CharacterPlayer.Character;
 
 public abstract class Item {
     protected String name;

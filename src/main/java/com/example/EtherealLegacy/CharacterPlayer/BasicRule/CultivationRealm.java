@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer.BasicRule;
 
 public enum CultivationRealm {
     MORTAL_BODY("凡胎境", "淬体炼骨", 1, 10),

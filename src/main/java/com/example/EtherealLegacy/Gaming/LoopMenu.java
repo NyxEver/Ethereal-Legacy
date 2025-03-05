@@ -1,7 +1,7 @@
-package Game;
+package com.example.EtherealLegacy.Gaming;
 
-import Game.Character;
-import Game.SaveLoad;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+
 import java.util.Scanner;
 
 public class LoopMenu {

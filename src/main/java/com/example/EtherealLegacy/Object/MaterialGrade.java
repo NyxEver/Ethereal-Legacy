@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.Object;
 
 public enum MaterialGrade {
     LOW("低级", "品质一般的材料"),

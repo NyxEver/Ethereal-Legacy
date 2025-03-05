@@ -1,9 +1,11 @@
-package Game;
+package com.example.EtherealLegacy.Gaming;
 
-import Game.Character;
-import Game.SceneManager;
+import com.example.EtherealLegacy.CharacterPlayer.BasicRule.CultivationRealm;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+import com.example.EtherealLegacy.Scene.*;
+import com.example.EtherealLegacy.Scene.Business.SectScene;
+
 import java.util.Random;
-import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class Explore {
         scenes = new HashMap<>();
         
         // 初始化森林场景
-        scenes.put("蚀月古林", new ForestScene("蚀月古林", 
+        scenes.put("蚀月古林", new ForestScene("蚀月古林",
             "每月月圆之夜树木渗出银血，妖兽集体化形", 1.2, CultivationRealm.MERIDIAN_OPENING));
         scenes.put("无回林", new ForestScene("无回林", 
             "雾气中暗藏空间裂隙，合体期以下入内必失方向", 1.5, CultivationRealm.GOLDEN_CORE));
@@ -35,7 +37,7 @@ public class Explore {
             "食人花释放致幻香气，沉眠者化为花肥", 1.7, CultivationRealm.FOUNDATION_BUILDING));
 
         // 初始化地牢场景
-        scenes.put("九劫渊", new DungeonScene("九劫渊", 
+        scenes.put("九劫渊", new DungeonScene("九劫渊",
             "每深入百丈遭遇一种天劫残余能量", 2.2, CultivationRealm.SPIRIT_SEVERING));
         scenes.put("千骸井", new DungeonScene("千骸井", 
             "井壁镶嵌十万修士头骨，镇压上古尸仙", 1.9, CultivationRealm.GOLDEN_CORE));
@@ -47,7 +49,7 @@ public class Explore {
             "时空错乱的刑狱，关押着触犯天条的仙人", 2.8, CultivationRealm.TRIBULATION));
 
         // 初始化遗迹场景
-        scenes.put("堕星城", new RelicScene("堕星城", 
+        scenes.put("堕星城", new RelicScene("堕星城",
             "天外陨石构建的巨城，重力是外界的三十倍", 2.3, CultivationRealm.NASCENT_SOUL));
         scenes.put("大罗天残碑", new RelicScene("大罗天残碑", 
             "刻有仙界残缺功法，参悟者必遭心魔劫", 2.6, CultivationRealm.SPIRIT_SEVERING));
@@ -59,7 +61,7 @@ public class Explore {
             "时间流速错乱的废墟，可能遇见未来化灰的自己", 3.0, CultivationRealm.IMMORTAL));
 
         // 初始化宗门场景
-        scenes.put("玄霜谷", new SectScene("玄霜谷", 
+        scenes.put("玄霜谷", new SectScene("玄霜谷",
             "以冰魄寒髓筑基，弟子皆白发蓝瞳", 1.0, CultivationRealm.FOUNDATION_BUILDING));
         scenes.put("焚天阙", new SectScene("焚天阙", 
             "建在活火山口的霸道剑宗，剑诀引动地火", 1.0, CultivationRealm.GOLDEN_CORE));

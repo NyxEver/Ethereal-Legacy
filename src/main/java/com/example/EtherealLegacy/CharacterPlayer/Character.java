@@ -1,4 +1,8 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer;
+
+import com.example.EtherealLegacy.CharacterPlayer.BasicRule.CultivationRealm;
+import com.example.EtherealLegacy.Object.*;
+import com.example.EtherealLegacy.Scene.Business.Sect;
 
 import java.util.Random;
 

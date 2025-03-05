@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.CharacterPlayer;
 
 public enum Race {
     HUMAN("人类", 100, 50),

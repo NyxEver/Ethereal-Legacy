@@ -1,6 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Gaming;
 
-import Game.Character;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
 import com.google.gson.Gson;
 import java.io.*;
 

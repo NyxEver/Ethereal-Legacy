@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Object;
+
+import com.example.EtherealLegacy.CharacterPlayer.Character;
 
 public class Material extends Item {
     private MaterialGrade materialGrade;

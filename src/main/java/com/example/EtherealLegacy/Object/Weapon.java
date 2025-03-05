@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Object;
+
+import com.example.EtherealLegacy.CharacterPlayer.Character;
 
 public class Weapon extends Item {
     private int damage;

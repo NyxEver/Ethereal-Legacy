@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.Object;
 
 public enum SkillGrade {
     BASIC("下品", "凡人武者可修", 1.0),

@@ -1,6 +1,6 @@
 package com.example.EtherealLegacy;
 
-import Game.HomePage;
+import com.example.EtherealLegacy.Gaming.HomePage;
 
 public class Main {
     public static void main(String[] args) {

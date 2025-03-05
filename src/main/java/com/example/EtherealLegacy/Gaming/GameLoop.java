@@ -1,7 +1,12 @@
-package Game;
+package com.example.EtherealLegacy.Gaming;
 
-import Game.Character;
-import Game.Explore;
+import com.example.EtherealLegacy.CharacterPlayer.Character;
+import com.example.EtherealLegacy.Object.Item;
+import com.example.EtherealLegacy.Object.ItemGrade;
+import com.example.EtherealLegacy.Object.Material;
+import com.example.EtherealLegacy.Object.Skill;
+import com.example.EtherealLegacy.Scene.SceneManager;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.Map;

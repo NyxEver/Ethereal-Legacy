@@ -1,4 +1,4 @@
-package Game;
+package com.example.EtherealLegacy.Object;
 
 public class LingShi {
     private int amount;

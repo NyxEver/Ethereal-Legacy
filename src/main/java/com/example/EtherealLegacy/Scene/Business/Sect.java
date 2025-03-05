@@ -1,4 +1,6 @@
-package Game;
+package com.example.EtherealLegacy.Scene.Business;
+
+import com.example.EtherealLegacy.Object.LingShi;
 
 import java.util.HashMap;
 import java.util.Map;
