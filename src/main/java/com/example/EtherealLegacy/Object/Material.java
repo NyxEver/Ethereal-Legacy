@@ -2,6 +2,10 @@ package com.example.EtherealLegacy.Object;
 
 import com.example.EtherealLegacy.CharacterPlayer.Character;
 
+/**
+ * 材料类
+ * 表示可以用于制作、升级的材料
+ */
 public class Material extends Item {
     private MaterialGrade materialGrade;
 
@@ -14,13 +18,15 @@ public class Material extends Item {
         return materialGrade;
     }
 
+    /**
+     * 使用材料
+     * @param character 使用材料的角色
+     * @return 是否使用成功
+     */
     @Override
-    public void use(Character character) {
-        System.out.println("使用材料：" + name);
-        // 根据材料等级和物品等级提供不同效果
-        int effect = calculateEffect();
-        System.out.println("获得" + effect + "点修为");
-        character.gainExp(effect);
+    public boolean use(Character character) {
+        System.out.println("这是一个材料，需要在特定场所使用。");
+        return false;
     }
 
     private int calculateEffect() {

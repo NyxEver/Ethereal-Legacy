@@ -2,9 +2,13 @@ package com.example.EtherealLegacy.Object;
 
 import com.example.EtherealLegacy.CharacterPlayer.Character;
 
+/**
+ * 技能类
+ * 表示角色可以学习和使用的技能
+ */
 public class Skill extends Item {
-    private int damage;
-    private int cost;
+    private final int damage;
+    private final int cost;
 
     public Skill(String name, String description, ItemGrade grade, int damage, int cost) {
         super(name, description, grade);
@@ -20,15 +24,20 @@ public class Skill extends Item {
         return cost;
     }
 
+    /**
+     * 使用技能
+     * @param character 使用技能的角色
+     * @return 是否使用成功
+     */
     @Override
-    public void use(Character character) {
+    public boolean use(Character character) {
         if (character.getCurrentMana() >= cost) {
-            System.out.println("使用技能：" + name);
             character.setCurrentMana(character.getCurrentMana() - cost);
-            // TODO: 实现技能使用逻辑
-        } else {
-            System.out.println("灵力不足，无法使用技能");
+            System.out.println("使用技能：" + getName());
+            return true;
         }
+        System.out.println("灵力不足，无法使用技能：" + getName());
+        return false;
     }
 
     public static Skill[] getAllSkills() {

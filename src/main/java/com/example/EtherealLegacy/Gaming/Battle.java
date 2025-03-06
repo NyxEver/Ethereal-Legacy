@@ -65,6 +65,9 @@ public class Battle {
       显示选项并执行玩家选择的行动
      */
     private void playerTurn() {
+        // 检查并使用恢复道具
+        player.getItemManager().checkAndUseConsumables();
+
         List<Skill> skills = player.getInventory().getSkills();
         Skill skill = skills.get(random.nextInt(skills.size()));
         int damage = skill.getDamage();
@@ -103,6 +106,9 @@ public class Battle {
         player.setHealth(player.getHealth() - damage);
         System.out.println("魔物攻击，造成" + damage + "点伤害！");
         System.out.println("玩家剩余生命值：" + player.getHealth());
+
+        // 受到伤害后检查并使用恢复道具
+        player.getItemManager().checkAndUseConsumables();
     }
 
     private void dropRewards() {
@@ -123,7 +129,7 @@ public class Battle {
             Material[] materials = Material.getAllMaterials();
             Material material = getItemByLevel(materials, player.getLevel());
             player.getInventory().addItem(material);
-            System.out.println("获得材料：" + material.getName());
+            System.out.println("获得物品：" + material.getName());
         }
         
         // 35%概率获得武器
@@ -131,7 +137,7 @@ public class Battle {
             Weapon[] weapons = Weapon.getAllWeapons();
             Weapon weapon = getItemByLevel(weapons, player.getLevel());
             player.getInventory().addItem(weapon);
-            System.out.println("获得武器：" + weapon.getName());
+            System.out.println("获得物品：" + weapon.getName());
         }
         
         // 15%概率获得技能

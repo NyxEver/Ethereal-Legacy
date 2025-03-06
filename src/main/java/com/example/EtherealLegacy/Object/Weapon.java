@@ -2,14 +2,44 @@ package com.example.EtherealLegacy.Object;
 
 import com.example.EtherealLegacy.CharacterPlayer.Character;
 
+/**
+ * 武器类
+ * 表示角色可以装备的武器
+ */
 public class Weapon extends Item {
-    private WeaponGrade weaponGrade;
-    private int additionalDamage;
+    private final WeaponGrade weaponGrade;
+    private final int additionalDamage;
+    private final int cost; // 使用武器需要消耗的灵力
 
     public Weapon(String name, String description, WeaponGrade grade, int additionalDamage) {
-        super(name, description, ItemGrade.DIVINE_SOURCE); // 保持Item父类的兼容性
+        super(name, description, convertToItemGrade(grade));
         this.weaponGrade = grade;
         this.additionalDamage = additionalDamage;
+        this.cost = calculateCost(); // 根据武器等级计算灵力消耗
+    }
+
+    private static ItemGrade convertToItemGrade(WeaponGrade weaponGrade) {
+        return switch (weaponGrade) {
+            case MORTAL -> ItemGrade.MORTAL_IRON;
+            case SPIRIT -> ItemGrade.SPIRIT_MATERIAL;
+            case MYSTIC -> ItemGrade.MYSTIC_GOLD;
+            case EARTH -> ItemGrade.EARTH_TREASURE;
+            case HEAVEN -> ItemGrade.HEAVEN_CRYSTAL;
+            case IMMORTAL -> ItemGrade.IMMORTAL_JADE;
+            case DIVINE -> ItemGrade.DIVINE_SOURCE;
+        };
+    }
+
+    private int calculateCost() {
+        return switch (weaponGrade) {
+            case MORTAL -> 5;      // 凡器消耗5点灵力
+            case SPIRIT -> 15;      // 灵器消耗15点灵力
+            case MYSTIC -> 30;      // 法器消耗30点灵力
+            case EARTH -> 50;       // 地器消耗50点灵力
+            case HEAVEN -> 80;      // 天器消耗80点灵力
+            case IMMORTAL -> 120;   // 仙器消耗120点灵力
+            case DIVINE -> 200;     // 神器消耗200点灵力
+        };
     }
 
     public int getDamage() {
@@ -20,10 +50,24 @@ public class Weapon extends Item {
         return weaponGrade;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * 使用武器
+     * @param character 使用武器的角色
+     * @return 是否使用成功
+     */
     @Override
-    public void use(Character character) {
-        System.out.println("装备武器：" + name + "（" + weaponGrade.getName() + "）");
-        // TODO: 实现武器装备逻辑
+    public boolean use(Character character) {
+        if (character.getCurrentMana() >= cost) {
+            character.setCurrentMana(character.getCurrentMana() - cost);
+            System.out.println("使用武器：" + getName() + "（" + weaponGrade.getName() + "）");
+            return true;
+        }
+        System.out.println("灵力不足，无法使用武器：" + getName());
+        return false;
     }
 
     public static Weapon[] getAllWeapons() {
@@ -142,7 +186,17 @@ public class Weapon extends Item {
             new Weapon("永恒之火种灯", "以永恒之火种点燃的神灯", WeaponGrade.IMMORTAL, 10),
             new Weapon("寂灭之瞳珠", "以寂灭之瞳凝结的宝珠", WeaponGrade.IMMORTAL, 14),
             new Weapon("创世血瓶", "盛放创世之血的宝瓶", WeaponGrade.IMMORTAL, 12),
-            new Weapon("原初之息壶", "封存了开天辟地之时的原始力量，如果使用得当，似乎可以再造天地重塑乾坤...", WeaponGrade.IMMORTAL, 11)
+            new Weapon("原初之息壶", "封存了开天辟地之时的原始力量，如果使用得当，似乎可以再造天地重塑乾坤...", WeaponGrade.IMMORTAL, 11),
+            new Weapon("混沌剑", "开天辟地的神器", WeaponGrade.IMMORTAL, 0),
+            new Weapon("太极剑", "蕴含阴阳之力的至宝", WeaponGrade.IMMORTAL, 2),
+            new Weapon("盘古斧", "开天辟地的神斧", WeaponGrade.IMMORTAL, 3),
+            new Weapon("混沌钟", "混沌至宝", WeaponGrade.IMMORTAL, 4),
+            new Weapon("乾坤鼎", "承载天地之力的神鼎", WeaponGrade.IMMORTAL, 2),
+            new Weapon("创世神剑", "创世之初的神剑", WeaponGrade.DIVINE, 5),
+            new Weapon("混沌神器", "混沌孕育的神器", WeaponGrade.DIVINE, 6),
+            new Weapon("太初神兵", "太初时代的神兵", WeaponGrade.DIVINE, 7),
+            new Weapon("永恒神器", "永恒不灭的神器", WeaponGrade.DIVINE, 8),
+            new Weapon("道源之器", "天道本源所化的神器", WeaponGrade.DIVINE, 10)
         };
     }
 } 

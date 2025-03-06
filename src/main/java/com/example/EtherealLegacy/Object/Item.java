@@ -54,6 +54,7 @@ public abstract class Item {
       使用物品的抽象方法
       由子类实现具体的物品使用逻辑
       @param character 使用物品的角色
+      @return 是否使用成功
      */
-    public abstract void use(Character character);
+    public abstract boolean use(Character character);
 } 

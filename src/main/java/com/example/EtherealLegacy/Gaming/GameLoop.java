@@ -104,42 +104,9 @@ public class GameLoop {
 
     /**
      * 显示背包内容
-     * 按物品品级分类显示所有物品
-     * 包括：
-     * - 材料物品（按品级分类）
-     * - 已学习技能
      */
     private void showBackpack() {
-        System.out.println("\n=== 背包物品 ===");
-        List<Item> items = player.getInventory().getItems();
-        if (items.isEmpty()) {
-            System.out.println("背包为空");
-        } else {
-            // 按品级分类显示物品
-            Map<ItemGrade, List<Item>> itemsByGrade = new HashMap<>();
-            for (Item item : items) {
-                if (item instanceof Material) {
-                    Material material = (Material) item;
-                    itemsByGrade.computeIfAbsent(material.getGrade(), k -> new ArrayList<>()).add(item);
-                }
-            }
-
-            // 按品级顺序显示
-            for (ItemGrade grade : ItemGrade.values()) {
-                List<Item> gradeItems = itemsByGrade.get(grade);
-                if (gradeItems != null && !gradeItems.isEmpty()) {
-                    System.out.println("\n" + grade.getName() + "：");
-                    for (Item item : gradeItems) {
-                        Material material = (Material) item;
-                        System.out.println("- " + item.getName() + "：" + item.getDescription());
-                        System.out.println("  获取难度：" + material.getMaterialGrade().getDifficulty());
-                        System.out.println("  获取方式：" + material.getMaterialGrade().getDescription());
-                    }
-                }
-            }
-        }
-        System.out.println("\n=== 已学技能 ===");
-        player.getInventory().showInventory();
+        player.showBackpack();
     }
 
     /**
