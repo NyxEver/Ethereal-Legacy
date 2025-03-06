@@ -13,28 +13,51 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+  游戏主循环类
+  负责控制游戏的整体流程
+  包括主菜单显示、场景切换、战斗系统等核心功能
+ */
 public class GameLoop {
+    // 玩家角色
     private Character player;
-    private Explore explore;
-    private LoopMenu loopMenu;
+    // 输入扫描器
     private Scanner scanner;
+    // 是否继续游戏
+    private boolean isRunning;
+    // 探索系统
+    private Explore explore;
+    // 循环菜单
+    private LoopMenu loopMenu;
 
+    /**
+      游戏主循环构造函数
+      @param player 玩家角色
+     */
     public GameLoop(Character player) {
         this.player = player;
         this.explore = new Explore(player);
         this.loopMenu = new LoopMenu();
         this.scanner = new Scanner(System.in);
+        this.isRunning = true;
     }
 
+    /**
+      运行游戏主循环
+      处理玩家输入并执行相应的游戏逻辑
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         while (player.getHealth() > 0) {
+            // 显示玩家当前状态，包括名称、等级、生命值、灵力值和经验值
             System.out.println("\n当前状态：" + player.getName() + " | 等级：" + player.getLevel() +
                     " | 生命值：" + player.getHealth() + "/" + player.getMaxHealth() +
                     " | 灵力值：" + player.getCurrentMana() + "/" + player.getMaxMana() +
                     " | 经验值：" + player.getExp() + "/" + player.getExpToNextLevel());
+            // 提供玩家可选择的行动选项
             System.out.print("选择行动（1:探索 2:背包 3:地图 4:角色属性 5:菜单）：");
             String input = scanner.nextLine();
+            // 根据玩家输入执行相应操作
             switch (input) {
                 case "1":
                     new Explore(player).explore();
@@ -79,6 +102,13 @@ public class GameLoop {
         System.out.println("================");
     }
 
+    /**
+     * 显示背包内容
+     * 按物品品级分类显示所有物品
+     * 包括：
+     * - 材料物品（按品级分类）
+     * - 已学习技能
+     */
     private void showBackpack() {
         System.out.println("\n=== 背包物品 ===");
         List<Item> items = player.getInventory().getItems();
@@ -112,6 +142,15 @@ public class GameLoop {
         player.getInventory().showInventory();
     }
 
+    /**
+     * 显示功能菜单
+     * 提供游戏基本功能选项：
+     * - 继续游戏
+     * - 保存游戏
+     * - 退出游戏
+     * 
+     * @param scanner 输入扫描器，用于接收玩家选择
+     */
     private void showFunctionMenu(Scanner scanner) {
         System.out.print("菜单（1:继续 2:保存 3:离开）：");
         String choice = scanner.nextLine();

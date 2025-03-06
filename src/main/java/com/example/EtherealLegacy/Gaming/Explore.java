@@ -11,16 +11,49 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+  探索系统类
+  负责管理游戏中的场景探索功能
+  包括场景初始化、场景选择、探索逻辑等 
+  主要功能：
+  1. 管理各类场景（森林、地牢、遗迹、宗门）
+  2. 根据概率选择探索场景
+  3. 处理场景进入和探索逻辑
+  4. 管理场景冷却时间
+ */
 public class Explore {
+    // 玩家角色对象
     private Character player;
+    // 随机数生成器，用于场景选择和事件触发
     private Random random = new Random();
+    // 场景映射表，存储所有可用场景
     private Map<String, Scene> scenes;
 
+    /**
+     * 探索系统构造函数
+     * 初始化探索系统并加载所有场景
+     * 
+     * @param player 玩家角色对象
+     */
     public Explore(Character player) {
         this.player = player;
         initializeScenes();
     }
 
+    /**
+     * 初始化所有场景
+     * 创建并配置四类场景：
+     * 1. 森林场景：适合采集和狩猎
+     * 2. 地牢场景：适合战斗和寻宝
+     * 3. 遗迹场景：适合探索和获得机缘
+     * 4. 宗门场景：适合交易和任务
+     * 
+     * 每个场景都包含：
+     * - 名称
+     * - 描述
+     * - 危险等级
+     * - 所需境界
+     */
     private void initializeScenes() {
         scenes = new HashMap<>();
         
@@ -73,6 +106,22 @@ public class Explore {
             "拥有且培养了大量的妖族，只出售素材", 1.0, CultivationRealm.TRIBULATION));
     }
 
+    /**
+     * 执行探索操作
+     * 根据概率选择场景类型并进入探索
+     * 
+     * 场景选择概率：
+     * - 森林场景：40%
+     * - 地牢场景：30%
+     * - 宗门场景：20%
+     * - 遗迹场景：10%
+     * 
+     * 探索流程：
+     * 1. 随机选择场景类型
+     * 2. 筛选可用场景
+     * 3. 检查场景冷却时间
+     * 4. 进入场景并执行探索
+     */
     public void explore() {
         // 根据概率选择场景类型
         double roll = random.nextDouble();
@@ -105,7 +154,9 @@ public class Explore {
         }
 
         if (!availableScenes.isEmpty()) {
+            // 随机选择一个可用场景
             Scene selectedScene = availableScenes.get(random.nextInt(availableScenes.size()));
+            // 检查场景冷却时间
             long cooldown = SceneManager.getRemainingCooldown(selectedScene.getName());
             if (cooldown > 0) {
                 System.out.printf("【%s】还在冷却中，剩余时间：%d分%d秒%n", 
@@ -115,6 +166,7 @@ public class Explore {
                 return;
             }
             
+            // 进入场景并开始探索
             System.out.printf("进入【%s】%n", selectedScene.getName());
             System.out.println(selectedScene.getDescription());
             SceneManager.recordScene(selectedScene.getName());

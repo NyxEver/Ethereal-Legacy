@@ -9,17 +9,33 @@ import com.example.EtherealLegacy.Object.*;
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+/**
+  战斗系统类
+  处理游戏中的战斗逻辑
+  包括回合制战斗、技能使用、伤害计算等
+ */
 public class Battle {
     private Character player;
+    // 敌人角色
     private Monster monster;
     private Random random = new Random();
 
+    /**
+     * 战斗系统构造函数
+     * @param player 玩家角色
+     * @param monster 敌人角色
+     */
     public Battle(Character player, Monster monster) {
         this.player = player;
         this.monster = monster;
     }
 
+    /**
+      开始战斗
+      处理战斗流程直到一方死亡
+     */
     public void start() {
         System.out.println("\n=== 战斗开始 ===");
         System.out.println("遭遇 " + monster.getName() + "！");
@@ -44,6 +60,10 @@ public class Battle {
         }
     }
 
+    /**
+      处理玩家回合
+      显示选项并执行玩家选择的行动
+     */
     private void playerTurn() {
         List<Skill> skills = player.getInventory().getSkills();
         Skill skill = skills.get(random.nextInt(skills.size()));
@@ -63,6 +83,10 @@ public class Battle {
         }
     }
 
+    /**
+      处理敌人回合
+      执行敌人的行动
+     */
     private void monsterTurn() {
         int damage = 5 + monster.getLevel() * 2;
         
